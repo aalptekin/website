@@ -25,7 +25,21 @@ p {
   color: #40514E;
 }
 
+.vid {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
 
+.vid iframe,
+.vid object,
+.vid embed {
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 75%;
+}
 
 .img-responsive {
   border-radius: 50%;
