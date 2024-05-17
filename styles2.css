@@ -1,0 +1,140 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 300px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  color: #333;
+}
+
+.card h1 {
+  font-weight: 500;
+  color: #000;
+}
+
+.card img {
+  width: 180px;
+  height: 180px;
+  border-radius: 5%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  object-fit: contain;
+}
+
+label {
+  display: block;
+  width: 200px;
+  background: #e3362c;
+  color: #fff;
+  padding: 12px;
+  margin: 10px auto;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button {
+    display: block;
+    width: 200px;
+    background: #e3362c;
+    color: #fff;
+    padding: 12px;
+    margin: 10px auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input {
+  display: none;
+}
+
+footer {
+  font-size: small;
+  text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.column {
+    padding: 10px;
+}
+
+
+
+    .column.first {
+        flex: 1;
+    }
+
+    .column.second {
+        flex: 2; /* Set the second column to regular width */
+        display: flex; /* Enable flexbox for the second column */
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically (optional) */
+    }
+
+    .column.third {
+        flex: 1;
+        color: #0c9335;
+    }
+
+.image {
+    width: 100%; /* Make image fit the column width */
+    border-radius: 25px;
+    height: auto;
+}
+
+.header {
+    text-align: center;
+    padding: 10px 0; /* Set top and bottom padding */
+    background: #c10e0e;
+    color: #fff;
+    margin-bottom: 20px; /* Add margin below the header */
+}
+
+    .header h1 {
+        font-size: 2em; /* Set font size to 2 times the default */
+        font-weight: bold; /* Make text bold */
+        margin: 5px; /* Remove default margins from heading */
+        margin-bottom: 10px;
+    }
+
+.yukle-label {
+    background: #1a7be0;
+    color: #fff;
+}
+
+.picture-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.picture-frame {
+  width: 120px; /* Adjust the width as needed */
+  height: 120px; /* Adjust the height as needed */
+  text-align: center;
+  border-radius: 10px; /* Adjust the border radius as needed */
+  border: 1px solid #ccc; /* Add a border for better visibility */
+}
+
+.picture-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.picture-name {
+  margin-top: 5px;
+  font-size: 12px;
+}
