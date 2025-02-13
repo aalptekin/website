@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAC@UAE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            padding: 20px;
+            margin: 0;
+        }
+        .banner {
+            background: url('images/tacuaeresimler/banner.png') no-repeat center center;
+            background-size: cover;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+        }
+        .card img {
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            max-height: 250px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        strong {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        strong:hover {
+            color: blue;
+        }
+        h2 {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        h2:hover {
+            color: blue;
+        }
+    </style>
+    <script>
+        function toggleCardVisibility(event) {
+            var card = event.target.closest(".card");
+            if (card) {
+                var hiddenContainer = card.querySelector("div");
+                if (hiddenContainer) {
+                    hiddenContainer.classList.toggle("hidden");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="banner">TAC@UAE</div>
+    <div class="container">
+        <div class="card">
+            <img src="images/tacuaeresimler/NecilToktay.jpg" alt="Necil Toktay">
+            <h2 onclick="toggleCardVisibility(event)">Necil Toktay  (1971)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2014-2022 arasi, yerlesim yok, ancak cokca iş seyahati söz konusu, 14-23 Subat 2025 arasi, yeni bir seyahat planlanmis durumda.</p>
+                <p><strong>TAC sonrası Eğitim</strong> ODTU, Idari Ilimler Fakultesi, 1971-1976</p>
+                <p><strong>Kariyer</strong> - Hema Disli, Ankara, 1977-1978
+                - Askerlik, Genel Kurmay, 1978- 1980
+                - Yasar Dis Ticaŕet, izmir, Istanbul, 1980-1988
+                - BAT (British American Tobacco), 1988-1994
+                - Barkon (ex Barwil) Denizcilik, 1994- devam)
+                - Balparmak, 2013- devam</p>
+                <p><strong>Sosyal</strong> Ana ikametgah Bodrum, oglum Boray Denis Toktay, insaat muhendisi, New York, Kızım Selin Ozderici (Toktay), Montreal'de iş ve özel yaşamlarını sürdürmekteler.</p>
+                <p><strong>TAC Ziyareti</strong> 2018, reunion</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Modernite</p>
+                <p><strong>Okuldaki favori mekan</strong> Shephard Hall-Talas, Stickler-Tarsus</p>
+                <p><strong>İz bırakan öğretmen</strong> Haydar Gofer</p>
+                <p><strong>Destek</strong> Gercek yasam onerilerinde bulunabilme</p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/TeomanOralerkaya.jpg" alt="Teoman Oralerkaya">
+            <h2 onclick="toggleCardVisibility(event)">Teoman Oralerkaya  (1980)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2019 yilinda universite mezuniyetimden uc hafta sonra geldim. Aon Dubai ofisinde staj yapmak icin geldim ve sonrasinda is teklifi alip burda yasamaya devam ettim.</p>
+                <p><strong>TAC sonrası Eğitim</strong> Bilkent Universitesi Isletme Fakultesini onur derecesiyle bitirdim. Bilkentli olmaktan cok gurur duyuyorum.</p>
+                <p><strong>Kariyer</strong> Aon Dubai ofisindeki uc aylik stajim sonunda ekibe full time rewards consultant olarak katildim ve Dubai'de bu alanda yaklasik 3,5 sene danismanlik yaptim. Daha sonrasinda Willis Towers Watson sirketinden is teklifi aldim ve Londraýa tasindim. Sirketin executive compensation and board advisory ekibinde 1 sene danismanlik yaptim. Kariyer anlaminda mantikli bir adim olsada, yasam anlaminda Londranin beni mutlu etmedigine karar verip 2024 yilinda Dubai'ye geri dondum. Suanda insan kaynaklari alaninda in-house pozisyonlara basvuruyorum ve bu alanda kendimi gelistirmek amaciyla CIPD Level 5 (people management) diploma programina katildim ve bunun uzerine calisiyorum.</p>
+                <p><strong>Sosyal</strong> Esimle burda staj yaparken tanistim ve 6 Temmuz 2022 yilinda Istanbul'da evlendik. Kendisi Misirli ve 2018 yilindan beri Dubai'de calisiyor. </p>
+                <p><strong>TAC Ziyareti</strong> Sanirim en son 2017 yilinda gittim, Adana veya cevresine daha sonrasinda hic gitme firsatim olmadi</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Okulun bahcesi aklima geliyor</p>
+                <p><strong>Okuldaki favori mekan</strong> Stickler cok severdim. Birde hep oturdugumuz bir bank vardi onu da hatirladim simdi</p>
+                <p><strong>İz bırakan öğretmen</strong> Niyazi hocamin yeri ayridir</p>
+                <p><strong>Destek</strong> Her konuda elimden geldigince yardimci olurum</p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/KadircanErkıralp.jpg" alt="Kadircan Erkıralp">
+            <h2 onclick="toggleCardVisibility(event)">Kadircan Erkıralp  (1984)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/AltarYılmaz.jpg" alt="Altar Yılmaz">
+            <h2 onclick="toggleCardVisibility(event)">Altar Yılmaz  (1987)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/UmayŞahin.jpg" alt="Umay Şahin ">
+            <h2 onclick="toggleCardVisibility(event)">Umay Şahin  (1988)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2023</p>
+                <p><strong>TAC sonrası Eğitim</strong> Bogazici Universitesi, Iktisat Bolumu</p>
+                <p><strong>Kariyer</strong> Businessman, Investor</p>
+                <p><strong>Sosyal</strong> Ailecek Palm Jumierah'da, Frond M'de oturuyoruz</p>
+                <p><strong>TAC Ziyareti</strong> </p>
+                <p><strong>TAC'nin hatırlattıkları</strong> </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/TolgaKutlu.jpg" alt="Tolga Kutlu">
+            <h2 onclick="toggleCardVisibility(event)">Tolga Kutlu (1989)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2011. İşim nedeniyle.</p>
+                <p><strong>TAC sonrası Eğitim</strong> 1995’de ODTÜ Elektrik ve Elektronik mühendisliği bölümünü bitirdikten sonra Belçika’da Solvey Business School’da işletme ve ekonometri alanında master yaptım.</p>
+                <p><strong>Kariyer</strong> 1998’de Belçika’da bir mobil operatörde başlayan profesyonel hayatımı 2007 yılından beri Ericsson’da devam ettiriyorum. Şu an Orta Doğu ve Afrika bölgesi IT Managed Services satışlarından sorumlu direktör olarak görev yapmaktayım. </p>
+                <p><strong>Sosyal</strong> Evliyim ve 15 yaşında bir kızım var. Ailecek aktif yelkenciyiz. Fırsat buldukça doğa yürüyüşü ve kamp yapmaya çalışıyoruz. </p>
+                <p><strong>TAC Ziyareti</strong> En son 2019 home coming </p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Arkadaşlıklar ve ozgurluk hissi</p>
+                <p><strong>Okuldaki favori mekan</strong> Stickler </p>
+                <p><strong>İz bırakan öğretmen</strong> Ms Charlotte Wellen</p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/AhmetAlptekin.jpg" alt="Ahmet Alptekin">
+            <h2 onclick="toggleCardVisibility(event)">Ahmet Alptekin  (1989)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2017 yılında iş vesilesi ile ailecek geldik.</p>
+                <p><strong>TAC sonrası Eğitim</strong> Hacettepe üniversitesi elektrik elektronik mühendisliği sonrasında da Indiana University of Pennsylvania da MBA master programını tamamladım.</p>
+                <p><strong>Kariyer</strong> Elektronik ödeme sektöründe satış tarafında çalışıyorum. Dubai merkezli olarak çalışıyorum.</p>
+                <p><strong>Sosyal</strong> Eşim Banu, kızım Beren, oğlum Ali ile birlikte 2017 yılından beri Dubai'de yaşıyoruz.</p>
+                <p><strong>TAC Ziyareti</strong> 2024 yılı Homecoming için gittim. Ayrıca 2024 yılı ağustos ayında okulu ziyaret ettim.</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Gençlik ve arkadaşlar</p>
+                <p><strong>Okuldaki favori mekan</strong> Lounge önündeki oturma alanı</p>
+                <p><strong>İz bırakan öğretmen</strong> Charlotte Wellen</p>
+                <p><strong>Destek</strong> Genç mezunları BAE'de iş imkanı konularında bilgilendirebilirim.</p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/CansınKüçükcan.jpg" alt="Cansın Küçükcan">
+            <h2 onclick="toggleCardVisibility(event)">Cansın Küçükcan  (1990)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> Kasım 2008. Çalıştığım bankanın Dubai ofisine transfer oldum. </p>
+                <p><strong>TAC sonrası Eğitim</strong> Üniversiteyi ve master öğrenimimi yurtdışında tamamladım. Üniversitede Marketing & Management Double Major ve daha sonrasında Finans üzerine MBA yaptım. </p>
+                <p><strong>Kariyer</strong> JPMorgan ve Standart Chartered Bank sonrası şu an First Abu Dhabi Bank’de çalışmaktayım.</p>
+                <p><strong>Sosyal</strong> Eşim, kızım ve oğlumla hep beraber buradayız. Kızım geldiğimizde 10 aylık idi. Oğlum burada doğdu.</p>
+                <p><strong>TAC Ziyareti</strong> En son 30.yıl Homecoming’e gitmiştim </p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Ömür boyu süren arkadaşlıklar </p>
+                <p><strong>Okuldaki favori mekan</strong> Okulun her yeri güzel :)</p>
+                <p><strong>İz bırakan öğretmen</strong> Mustafa Nacar </p>
+                <p><strong>Destek</strong> Dubai ya da bankacılık kariyeri gibi konularda yardımcı olabilirim</p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/OnurAydemir.jpg" alt="Onur Aydemir">
+            <h2 onclick="toggleCardVisibility(event)">Onur Aydemir  (1990)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/KeremSadıklar.jpg" alt="Kerem Sadıklar">
+            <h2 onclick="toggleCardVisibility(event)">Kerem Sadıklar  (1990)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2022</p>
+                <p><strong>TAC sonrası Eğitim</strong> Boğaziçi İnşaat Mühendisliği, Georgia State MBA</p>
+                <p><strong>Kariyer</strong> Assystem Bölge Direktörü</p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong> 2016 yılında ziyaret </p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Maalesef tek şey yok, o kadar çok ki</p>
+                <p><strong>Okuldaki favori mekan</strong> Kebapçı Haluk</p>
+                <p><strong>İz bırakan öğretmen</strong> Mustafa Nacar</p>
+                <p><strong>Destek</strong> Mühendislik alanında iş imkanları</p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/BerilAyan.jpg" alt="Beril Ayan Sökeli">
+            <h2 onclick="toggleCardVisibility(event)">Beril Ayan Sökeli  (1991)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/EceAlptekin.jpg" alt="Ece Alptekin Alöç">
+            <h2 onclick="toggleCardVisibility(event)">Ece Alptekin Alöç  (1991)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/AlperÇelen.jpg" alt="Alper Çelen">
+            <h2 onclick="toggleCardVisibility(event)">Alper Çelen  (1991)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/CemAyberkin.jpg" alt="Cem Ayberkin">
+            <h2 onclick="toggleCardVisibility(event)">Cem Ayberkin  (1992)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2011</p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong> </p>
+                <p><strong>TAC'nin hatırlattıkları</strong> </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/ErolGöçtü.jpg" alt="Erol Göçtü">
+            <h2 onclick="toggleCardVisibility(event)">Erol Göçtü  (1992)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2010, Ericsson da iş değişikliği ile geldim.</p>
+                <p><strong>TAC sonrası Eğitim</strong> ODTÜ endüstri mühendisliğinden mezun oldum</p>
+                <p><strong>Kariyer</strong> Ericsson şirketinde Managed Services bolumunde global iş geliştirmeden sorumluyum.</p>
+                <p><strong>Sosyal</strong> Eşim ve oglumuz ile mutlu sakin bir yaşamımız var.</p>
+                <p><strong>TAC Ziyareti</strong> 2022 Home coming</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Arkadaşlarımızla geçirdiğimiz güzel gunler</p>
+                <p><strong>Okuldaki favori mekan</strong> Stickler</p>
+                <p><strong>İz bırakan öğretmen</strong> Erdoğan Kaynak</p>
+                <p><strong>Destek</strong> </p>
+
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/GökhanÇayhan.jpg" alt="Gökhan Çayhan">
+            <h2 onclick="toggleCardVisibility(event)">Gökhan Çayhan  (1992)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/IsilAta.jpg" alt="Aziz Ata">
+            <h2 onclick="toggleCardVisibility(event)">Aziz Ata  (1992)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/MehmetTekkarışmaz.jpg" alt="Mehmet Tekkarışmaz">
+            <h2 onclick="toggleCardVisibility(event)">Mehmet Tekkarışmaz  (1992)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/OzanYenigün.jpg" alt="Ozan Yenigün">
+            <h2 onclick="toggleCardVisibility(event)">Ozan Yenigün  (1993)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong> </p>
+                <p><strong>TAC'nin hatırlattıkları</strong> </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/IsilAta.jpg" alt="Işıl Ata">
+            <h2 onclick="toggleCardVisibility(event)">Işıl Ata  (1994)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2006 - evlendim ve tasindim. Esim Aziz Ata Dubai’de calisiyordu. </p>
+                <p><strong>TAC sonrası Eğitim</strong> Marmara Üniversitesi Fransizca Kami yonetimi bolumunu bitirdim. </p>
+                <p><strong>Kariyer</strong> 25 yildir IK alaninda calisiyorum. Kariyerime bir Fransiz ilac firmasinda basladim. Sonrasinda farkli Amerikan sirketlerinde calistim. Su anda Cigna’da global bir IK rolundeyim. </p>
+                <p><strong>Sosyal</strong> Iki oglumuz var. Biri 17 digeri 13 yasinda. Ingiliz okullarina gidiyorlar. </p>
+                <p><strong>TAC Ziyareti</strong> Son homecoming’de gittim. 30. Yilimizi kutladik. </p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Gercek dostluk</p>
+                <p><strong>Okuldaki favori mekan</strong> Stickler</p>
+                <p><strong>İz bırakan öğretmen</strong> Mustafa Nacar </p>
+                <p><strong>Destek</strong> IK alaninda mentorluk yapabilirim. Ya da kocluk yapabilirim. </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/MügeTolan.jpg" alt="Müge Tolan">
+            <h2 onclick="toggleCardVisibility(event)">Müge Tolan  (1994)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2024 - Eşimin işi nedeniyle </p>
+                <p><strong>TAC sonrası Eğitim</strong> Galatasaray Üniversitesi, Uluslararası İlişkiler Bölümü Lisans - Galatasaray Üniversitesi AB İktisadi Y. Lisans - Yeditepe Univ. MBA</p>
+                <p><strong>Kariyer</strong> 5 yıl Eczacıbaşı Vitra Karoda ihracat ve pazarlama departmanlarinda çalıştım, daha sonra kendi işimi kurdum, 15 yıl tercüme bürosu işlettim</p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong> </p>
+                <p><strong>TAC'nin hatırlattıkları</strong> </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/TolgaTolan.jpg" alt="Tolga Tolan">
+            <h2 onclick="toggleCardVisibility(event)">Tolga Tolan  (1994)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2024 Temmuz - Şirket bünyesinde MENA bölgesine transfer</p>
+                <p><strong>TAC sonrası Eğitim</strong> Boğaziçi Üniversitesi Endüstri Mühendisliği, 1998</p>
+                <p><strong>Kariyer</strong> NttData Business Solutions, Customer Experience (CX) çözümleri için tüm META Bölgesinden sorumlu Genel Müdür Yardımcısı olarak çalışıyorum</p>
+                <p><strong>Sosyal</strong> Eşim Müge (TACde birlikte 4 sene okuduk) ve kızım Umay (8.5 yaşında) ile birlikte Dubai’de yaşamaktayız.</p>
+                <p><strong>TAC Ziyareti</strong> 2024 Mart ayında, Mersin’e gelmiştim. Çok özlemiştim, fırsat da bulunca ailemle uğradık.</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Arkadaşlık ve mavra</p>
+                <p><strong>Okuldaki favori mekan</strong> Lounge</p>
+                <p><strong>İz bırakan öğretmen</strong> Mr. Cecil Allen</p>
+                <p><strong>Destek</strong> Mentorluk, özellikle IT ve teknolojik danışmanlık alanları için kariyer desteği</p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/BurakEcemiş.jpg" alt="Burak Ecemiş">
+            <h2 onclick="toggleCardVisibility(event)">Burak Ecemiş  (1995)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/EbruTuygun.jpg" alt="Ebru Tuygun">
+            <h2 onclick="toggleCardVisibility(event)">Ebru Tuygun  (1998)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2019 - iş </p>
+                <p><strong>TAC sonrası Eğitim</strong> Boğaziçi Üniversitesi - Siyaset Bilimi ve Uluslararası İlişkiler, Harvard Üniversitesi Business Certificate Program, Leadership Excellence ve Stanford Universitesi Executive Education - High Potential Women Leaders Program</p>
+                <p><strong>Kariyer</strong> 20 sene Deloitte ve Accenture gibi Uluslararası Danışmanlık Firmalarında Chief Marketing Officer rollerinde bulundum. 2024’te GVGL Marketing Management adında marketing, strategy ve consulting hizmeti verem firmamı kurdum. IWBD - International Women Board of Directors Başkanlığını yürütüyorum. Uluslararası üst düzey Pazarlama ve İletişim başkanlarının üyesi olduğu Marketing Society’da GCC’de yönetim kurulundayım.</p>
+                <p><strong>Sosyal</strong> Eşimle geldik, o da Dubai’de BEE Premium adında bir hospitality, turizm ve etkinlik firmasını kurdu.</p>
+                <p><strong>TAC Ziyareti</strong> cok oldu maalesef:/</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Sosyal kulupler, geziler, dostluk</p>
+                <p><strong>Okuldaki favori mekan</strong> Stickler</p>
+                <p><strong>İz bırakan öğretmen</strong> Erdogan Hoca ve rehber hocamız Nilgun abla</p>
+                <p><strong>Destek</strong> Tecrübe paylaşımı, kariyer tavsiyeleri</p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/TurgutYeğenağa.jpg" alt="Turgut Yeğenağa">
+            <h2 onclick="toggleCardVisibility(event)">Turgut Yeğenağa  (2001)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> Aralik 2023, yeni iş</p>
+                <p><strong>TAC sonrası Eğitim</strong> Lisans ; Koç Universitesi Ing İşletme Yüksek ; Lisans Cukurova Universitesi Pazarlama 
+                Yüksek ; Lisans Özyeğin Universitesi Finans Müh & Risk Yönetimi</p>
+                <p><strong>Kariyer</strong> CEO - Al Ghurair Foods & Resources</p>
+                <p><strong>Sosyal</strong> Ailemi 4 kişi ;  eşim 2002 mezunu Meriç Yeğenağa, 2 ve 7 yaşında cocuklarimiz var. (Nil ve Can)</p>
+                <p><strong>TAC Ziyareti</strong> 2022, ziyaret</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Eşim ve 26 Eylül 2009 da Okuldaki düğünümüz</p>
+                <p><strong>Okuldaki favori mekan</strong> Lounge ve Kapali Spor Salonu</p>
+                <p><strong>İz bırakan öğretmen</strong> Erdoğan Kaynak</p>
+                <p><strong>Destek</strong> Kariyer planlamasi vb</p>
+
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/PınarYB.jpg" alt="Pınar Yıldız Budakoğlu">
+            <h2 onclick="toggleCardVisibility(event)">Pınar Yıldız Budakoğlu  (2002)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2020 - iş nedeniyle</p>
+                <p><strong>TAC sonrası Eğitim</strong> Bilkent Bilgisayar Mühendisliği - Koç Executive MBA</p>
+                <p><strong>Kariyer</strong> Bilkent'ten mezun olduktan sonra Cisco'nun yeni mezun programı ile Amsterdam'da bir sene eğitim aldım. Sonrasında Cisco'da çeşitli rollerde çalıştım. Şimdi Cisco'da Gulf Servis satıştan sorumluyum. </p>
+                <p><strong>Sosyal</strong> 9 yaşında bir oğlum var. Eşim de Cisco'da çalışıyor. Palm'de yaşıyoruz.</p>
+                <p><strong>TAC Ziyareti</strong> 2024 - ogluma okulu gostermek için</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Arkadaşlarım</p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> Ali Karamık, Gamze Ozalay, Ayşin Karakurt, Purnur Karaca - çok daha fazlası var:)</p>
+                <p><strong>Destek</strong> Teknoloji şirketlerinde çalışma alanında sorularına cevap verebilir, mentorluk yapabilirim. </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/MeriçYeğenağa.jpg" alt="Meriç Yeğenağa">
+            <h2 onclick="toggleCardVisibility(event)">Meriç Yeğenağa  (2002)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> Agustos 2024, yeni is</p>
+                <p><strong>TAC sonrası Eğitim</strong> Lisans ; Yeditepe Fransizca Uluslararasi iliskiler Yuksel Lisans ; Cife Advanced European Studies</p>
+                <p><strong>Kariyer</strong> Head of Marketing & Partnerships ; Dogus Hospitality & Retail Group (Dream)</p>
+                <p><strong>Sosyal</strong> 4 kisilik bir aileyiz , esim Turgut Yeğenağa 2001 mezunu, Nil ve Can adinda cocuklarimiz var.</p>
+                <p><strong>TAC Ziyareti</strong> 2023 ziyaret</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Stickler..</p>
+                <p><strong>Okuldaki favori mekan</strong> Auditorium </p>
+                <p><strong>İz bırakan öğretmen</strong> Ali Karamik</p>
+                <p><strong>Destek</strong> Kariyer planlama vb</p>
+
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/CanElbeyli.jpg" alt="Can Elbeyli">
+            <h2 onclick="toggleCardVisibility(event)">Can Elbeyli  (2003)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/GözdeDemir.jpg" alt="Gözde Demir">
+            <h2 onclick="toggleCardVisibility(event)">Gözde Demir  (2003)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/FurkanAnarat.jpg" alt="Furkan Anarat">
+            <h2 onclick="toggleCardVisibility(event)">Furkan Anarat  (2003)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/ElifNarin.jpg" alt="Elif Narin">
+            <h2 onclick="toggleCardVisibility(event)">Elif Narin  (2007)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> </p>
+                <p><strong>TAC sonrası Eğitim</strong> </p>
+                <p><strong>Kariyer</strong> </p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong>  </p>
+                <p><strong>TAC'nin hatırlattıkları</strong>  </p>
+                <p><strong>Okuldaki favori mekan</strong> </p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/YiğitGüleç.jpg" alt="Yiğit Güleç">
+            <h2 onclick="toggleCardVisibility(event)">Yiğit Güleç  (2005)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2021</p>
+                <p><strong>TAC sonrası Eğitim</strong> Bilgi Üniversitesi</p>
+                <p><strong>Kariyer</strong> Food Import and Export</p>
+                <p><strong>Sosyal</strong> 2 çocuklu bir aileyiz. 1 ve 4 yaşındalar</p>
+                <p><strong>TAC Ziyareti</strong> 5 sene olmuştur</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> </p>
+                <p><strong>Okuldaki favori mekan</strong> Nokta</p>
+                <p><strong>İz bırakan öğretmen</strong> </p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/MuratYıldırım.jpg" alt="Murat Yıldırım">
+            <h2 onclick="toggleCardVisibility(event)">Murat Yıldırım  (2008)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2017</p>
+                <p><strong>TAC sonrası Eğitim</strong> Istanbul Bilgi Üniversitesi İşletme Enformatigi mezunu, 2013</p>
+                <p><strong>Kariyer</strong> Globed E-Learning şirketinde 10 yılı aşkın bir süredir E-Öğrenme alanında hizmet veren Murat Yıldırım, görevine BAE ülke direktörü olarak devam etmektedir. Tarsus Amerikan Koleji'nde IB Diploma programından mezun olan ve sonrasında Bilgi Üniversitesi İşletme Enformatiği bölümünü bitiren Murat, 2014 yılında Globed'in İstanbul şubesinde profesyonel iş kariyerine başlamıştır. 2025 yılı itibariyle yönettiği ekibiyle beraber, bölgedeki özel eğitim kurumlarına, alanında ödül almış, öğrencileri geleceğe hazırlayan ve farklı disiplinleri hedef alan profesyonel eğitim kaynaklarıyla en üst kalitede hizmet vermeye devam etmektedir. Pazarın ihtiyaçlarını en iyi seviyede analiz edip, mevcut ve potansiyel müşterilerine ihtiyaçları olan akademik hizmet desteğini vererek güvenilir ilişkiler kurmayı ve öğrencilerin akademik ve kariyer hedeflerine ulaşmalarını ilke edinip Globed'in bölgede sürdürülebilir büyümesine katkı sağlamayı misyon edinmiştir.</p>
+                <p><strong>Sosyal</strong> </p>
+                <p><strong>TAC Ziyareti</strong> 2023 Home Coming</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Her zaman canlı kalan anılar, Stickler binasının muhteşem ihtişamı ve unutulmaz mavralar. </p>
+                <p><strong>Okuldaki favori mekan</strong> GYM</p>
+                <p><strong>İz bırakan öğretmen</strong> Erdogan Kaynak, Firat Eser (Basketbol), Esref Tasucu, Nicola Oner, Gunseli Yüksel,</p>
+                <p><strong>Destek</strong> </p>
+            </div>
+        </div>
+<div class="card">
+            <img src="images/tacuaeresimler/AlaraYemen.jpg" alt="Alara Altuntaş Yemen">
+            <h2 onclick="toggleCardVisibility(event)">Alara Altuntaş Yemen  (2015)</h2>
+            <div class="hidden">
+                <p><strong>BAE'ye Geliş</strong> 2019 yilinda universite mezuniyetimden uc hafta sonra geldim. Aon Dubai ofisinde staj yapmak icin geldim ve sonrasinda is teklifi alip burda yasamaya devam ettim.</p>
+                <p><strong>TAC sonrası Eğitim</strong> Bilkent Universitesi Isletme Fakultesini onur derecesiyle bitirdim. Bilkentli olmaktan cok gurur duyuyorum.</p>
+                <p><strong>Kariyer</strong> Aon Dubai ofisindeki uc aylik stajim sonunda ekibe full time rewards consultant olarak katildim ve Dubai'de bu alanda yaklasik 3,5 sene danismanlik yaptim. Daha sonrasinda Willis Towers Watson sirketinden is teklifi aldim ve Londraýa tasindim. Sirketin executive compensation and board advisory ekibinde 1 sene danismanlik yaptim. Kariyer anlaminda mantikli bir adim olsada, yasam anlaminda Londranin beni mutlu etmedigine karar verip 2024 yilinda Dubai'ye geri dondum. Suanda insan kaynaklari alaninda in-house pozisyonlara basvuruyorum ve bu alanda kendimi gelistirmek amaciyla CIPD Level 5 (people management) diploma programina katildim ve bunun uzerine calisiyorum.</p>
+                <p><strong>Sosyal</strong> Esimle burda staj yaparken tanistim ve 6 Temmuz 2022 yilinda Istanbul'da evlendik. Kendisi Misirli ve 2018 yilindan beri Dubai'de calisiyor. </p>
+                <p><strong>TAC Ziyareti</strong> Sanirim en son 2017 yilinda gittim, Adana veya cevresine daha sonrasinda hic gitme firsatim olmadi</p>
+                <p><strong>TAC'nin hatırlattıkları</strong> Okulun bahcesi aklima geliyor</p>
+                <p><strong>Okuldaki favori mekan</strong> Stickler cok severdim. Birde hep oturdugumuz bir bank vardi onu da hatirladim simdi</p>
+                <p><strong>İz bırakan öğretmen</strong> Niyazi hocamin yeri ayridir</p>
+                <p><strong>Destek</strong> Her konuda elimden geldigince yardimci olurum</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
