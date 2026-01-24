@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HACKERLA</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #000;
+    }
+
+    /* Background */
+    body {
+      background: url("image.jpg") center center / cover no-repeat fixed;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 30px; /* keep it high */
+      will-change: transform;
+    }
+
+    /* Screen shake (applied by toggling .shake on body) */
+    body.shake {
+      animation: shake 160ms linear infinite;
+    }
+    @keyframes shake {
+      0%   { transform: translate(0,0) rotate(0deg); }
+      10%  { transform: translate(-3px, 2px) rotate(-0.4deg); }
+      20%  { transform: translate(3px, -2px) rotate(0.4deg); }
+      30%  { transform: translate(-4px, -1px) rotate(-0.5deg); }
+      40%  { transform: translate(4px, 1px) rotate(0.5deg); }
+      50%  { transform: translate(-2px, 3px) rotate(-0.3deg); }
+      60%  { transform: translate(2px, -3px) rotate(0.3deg); }
+      70%  { transform: translate(-3px, -2px) rotate(-0.4deg); }
+      80%  { transform: translate(3px, 2px) rotate(0.4deg); }
+      90%  { transform: translate(-2px, 1px) rotate(-0.2deg); }
+      100% { transform: translate(0,0) rotate(0deg); }
+    }
+
+    /* Main card */
+    .card {
+      width: min(900px, calc(100vw - 32px));
+      background: rgba(0, 0, 0, 0.68);
+      border-radius: 18px;
+      padding: 18px 16px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+      text-align: center;
+      color: #fff;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Banner with flashing + “glitchy” pulse */
+    .banner {
+      font-size: clamp(26px, 5vw, 54px);
+      font-weight: 900;
+      letter-spacing: 1px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      position: relative;
+      user-select: none;
+
+      /* flashing */
+      animation: flash 500ms steps(2, end) infinite, pulse 900ms ease-in-out infinite;
+      background: rgba(255, 0, 0, 0.25);
+      box-shadow: 0 0 0 rgba(255,0,0,0);
+    }
+
+    @keyframes flash {
+      0%   { background: rgba(255, 0, 0, 0.18); }
+      50%  { background: rgba(255, 0, 0, 0.55); }
+      100% { background: rgba(255, 0, 0, 0.18); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 0 rgba(255,0,0,0); box-shadow: 0 0 0 rgba(255,0,0,0); }
+      50% { transform: scale(1.02); text-shadow: 0 0 18px rgba(255,0,0,0.65); box-shadow: 0 0 26px rgba(255,0,0,0.35); }
+    }
+
+    /* Fooled image */
+    .fooled {
+      max-width: min(520px, 92%);
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      margin: 6px auto 8px;
+      display: block;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Jumpscare overlay (hidden until triggered) */
+    #jumpscare {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      place-items: center;
+      background: rgba(0,0,0,0.92);
+    }
+    #jumpscare.show {
+      display: grid;
+      animation: flicker 90ms steps(2, end) infinite;
+    }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.75; }
+      100% { opacity: 1; }
+    }
+
+    #jumpscare img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      transform: scale(1.08);
+      filter: contrast(1.25) saturate(1.25);
+    }
+
+    /* A subtle “warning” text (optional) */
+    .sub {
+      margin-top: 10px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card" id="content">
+    <div class="banner" id="banner">HACKERLANDINIZ</div>
+    <img class="fooled" src="fooled.png" alt="HACKERLA" />
+    <div class="sub">😈</div>
+  </main>
+
+  <!-- Jumpscare overlay (uses fooled.jpg; no extra asset needed) -->
+  <div id="jumpscare" aria-hidden="true">
+    <img src="fooled2.png" alt="HACKERLA" />
+  </div>
+
+  <!-- Looping laugh audio -->
+  <audio id="laugh" src="laugh.mp3" autoplay loop></audio>
+
+  <script>
+    /********************
+     * 1) Disable back button (best-effort, client-side)
+     ********************/
+    (function disableBack() {
+      history.pushState(null, "", location.href);
+      window.addEventListener("popstate", () => {
+        history.pushState(null, "", location.href);
+      });
+    })();
+
+    /********************
+     * 2) Autoplay audio + continuous “evil” random pitch/speed
+     ********************/
+    const audio = document.getElementById("laugh");
+    audio.volume = 0.9;
+
+    function tryPlay() {
+      if (sessionStorage.getItem("ALLOW_AUDIO") === "1") {
+        sessionStorage.removeItem("ALLOW_AUDIO");
+        audio.play();
+        } else {
+            // fallback if opened directly
+            document.addEventListener("pointerdown", () => audio.play(), { once: true });
+        }
+    }
+    tryPlay();
+
+    // Randomize playbackRate periodically (creates pitch/speed variation)
+    // Note: playbackRate affects pitch in most browsers.
+    function randomizeRate() {
+      const rate = 0.82 + Math.random() * 0.55; // ~0.82 to ~1.37
+      audio.playbackRate = Number(rate.toFixed(2));
+    }
+    randomizeRate();
+    setInterval(randomizeRate, 900 + Math.random() * 900);
+
+    /********************
+     * 3) Screen shake synced to the laugh (amplitude from audio level)
+     ********************/
+    let audioCtx, analyser, data;
+    let rafId = null;
+
+    function startShakeAnalysis() {
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const src = audioCtx.createMediaElementSource(audio);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        data = new Uint8Array(analyser.frequencyBinCount);
+        src.connect(analyser);
+        analyser.connect(audioCtx.destination);
+
+        const tick = () => {
+          analyser.getByteFrequencyData(data);
+
+          // crude "energy" estimate
+          let sum = 0;
+          for (let i = 0; i < data.length; i++) sum += data[i];
+          const energy = sum / data.length; // 0..255-ish
+
+          // Shake when energy exceeds threshold
+          if (energy > 55) document.body.classList.add("shake");
+          else document.body.classList.remove("shake");
+
+          rafId = requestAnimationFrame(tick);
+        };
+        tick();
+      } catch (e) {
+        // If audio analysis isn't allowed, fall back to occasional shake bursts
+        setInterval(() => {
+          document.body.classList.add("shake");
+          setTimeout(() => document.body.classList.remove("shake"), 350);
+        }, 1800);
+      }
+    }
+
+    // Many browsers require a user gesture to resume AudioContext
+    document.addEventListener("pointerdown", () => {
+      if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+      if (!audioCtx) startShakeAnalysis();
+    }, { once: true });
+
+    // If autoplay succeeds and browser allows, try starting analysis shortly after
+    setTimeout(() => {
+      if (!audioCtx) {
+        // will fail silently if not allowed; then we rely on pointerdown
+        startShakeAnalysis();
+      }
+    }, 700);
+
+    /********************
+     * 4) Flashing banner already via CSS; add occasional “glitch” nudge
+     ********************/
+    const banner = document.getElementById("banner");
+    function glitchBannerOnce() {
+      const dx = (Math.random() * 8 - 4).toFixed(1);
+      const dy = (Math.random() * 6 - 3).toFixed(1);
+      banner.style.transform = `translate(${dx}px, ${dy}px) scale(1.02)`;
+      setTimeout(() => banner.style.transform = "", 90);
+    }
+    setInterval(glitchBannerOnce, 1200 + Math.random() * 1600);
+
+    /********************
+     * 5) Delayed jump scare
+     * - Shows a full-screen overlay of fooled.jpg
+     * - Briefly boosts volume + speed
+     ********************/
+    const jumpscare = document.getElementById("jumpscare");
+
+    function triggerJumpscare() {
+      jumpscare.classList.add("show");
+      jumpscare.setAttribute("aria-hidden", "false");
+
+      // brief audio spike
+      const prevVol = audio.volume;
+      const prevRate = audio.playbackRate;
+
+      audio.volume = 1.0;
+      audio.playbackRate = Math.min(1.6, prevRate + 0.3);
+
+      // keep it on screen for a moment, then hide
+      setTimeout(() => {
+        jumpscare.classList.remove("show");
+        jumpscare.setAttribute("aria-hidden", "true");
+        audio.volume = prevVol;
+        audio.playbackRate = prevRate;
+      }, 900);
+    }
+
+    // Fire after a random delay (2.5–6 seconds)
+    setTimeout(triggerJumpscare, 2500 + Math.random() * 3500);
+
+    // Bonus: chance to repeat occasionally
+    setInterval(() => {
+      if (Math.random() < 0.22) triggerJumpscare(); // 22% chance
+    }, 7000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>You Won</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* Full-page background */
+    body {
+      background: url("image.jpg") center center / cover no-repeat fixed;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;   /* ← change */
+      padding-top: 20px;         /* ← adjust this value */
+    }
+
+    /* Countdown top-right */
+    #countdown {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      font-weight: 800;
+      color: red;
+      font-size: 20px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.45);
+      z-index: 1000;
+    }
+
+    /* Main card */
+    .card {
+      width: min(900px, calc(100vw - 32px));
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 18px;
+      padding: 22px 18px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Banner */
+    .banner {
+      font-size: clamp(28px, 5vw, 56px);
+      font-weight: 900;
+      letter-spacing: 1px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(2px);
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    /* Prize image */
+    .prize {
+      max-width: min(520px, 90%);
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      margin: 10px auto 14px;
+      display: block;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    }
+
+    .instructions {
+      font-size: clamp(16px, 2.2vw, 20px);
+      line-height: 1.4;
+      margin: 8px 0 14px;
+    }
+
+    .datetime {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 14px;
+      opacity: 0.95;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown">60</div>
+
+  <main class="card" id="content">
+    <div class="banner">KAZANDINIZ</div>
+
+    <img class="prize" src="prize.png" alt="Prize" />
+
+    <div class="instructions">
+      <code style="color:#fff; background:rgba(0,0,0,0.35); padding:2px 6px; border-radius:6px;">
+        Ödülünüzü almak için Selim'e whatsapp ile bu ekranın resmini gönderin.
+      </code>
+      Hacker Kerem
+    </div>
+
+    <div class="datetime" id="datetime"></div>
+  </main>
+
+  <script>
+    // --- ACCESS CONTROL ---
+    const token = sessionStorage.getItem("WINNER_TOKEN");
+
+    if (!token) {
+        document.body.innerHTML = "";
+        document.body.style.background = "#000";
+        throw new Error("Hack yapamazsınız");
+    }
+
+    // One-time use token
+    sessionStorage.removeItem("WINNER_TOKEN");
+
+    // --- PAGE LOGIC ---
+    document.getElementById("datetime").textContent =
+        new Date().toLocaleString();
+
+    let remaining = 60;
+    const cdEl = document.getElementById("countdown");
+
+    cdEl.textContent = remaining;
+
+    const timer = setInterval(() => {
+        remaining--;
+        cdEl.textContent = remaining;
+
+        if (remaining <= 0) {
+        clearInterval(timer);
+        document.body.innerHTML = "";
+        }
+    }, 1000);
+    </script>
+
+</body>
+</html>
