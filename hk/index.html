@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>Click the Spots</title>
   <style>
     html, body {
@@ -11,6 +11,8 @@
       height: 100%;
       overflow: hidden;
       background: #000;
+      /* Mobile: prevent scrolling/zooming gestures interfering with taps */
+      touch-action: none;
     }
     #img {
       width: 100vw;
@@ -19,6 +21,8 @@
       display: block;
       user-select: none;
       -webkit-user-drag: none;
+      /* Mobile: make the image the gesture surface */
+      touch-action: none;
     }
     #status {
       position: fixed;
@@ -32,21 +36,21 @@
       max-width: min(520px, calc(100vw - 24px));
       display: none;
       z-index: 10;
+      pointer-events: none;
     }
     #debug {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        padding: 6px 10px;
-        background: rgba(0, 0, 0, 0.65);
-        color: #00ff88;
-        font-family: monospace;
-        font-size: 13px;
-        border-radius: 6px;
-        z-index: 20;
-        pointer-events: none;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #00ff88;
+      font-family: monospace;
+      font-size: 13px;
+      border-radius: 6px;
+      z-index: 20;
+      pointer-events: none;
     }
-
   </style>
 </head>
 <body>
@@ -61,18 +65,17 @@
     const BYE_PAGE = "bye.html";
     const HIT_RADIUS_PX = 20;
 
-
     let targets = [];  // [{x,y,found:false}, {x,y,found:false}]
     let ready = false;
 
     const img = document.getElementById("img");
     const statusEl = document.getElementById("status");
+    const debugEl = document.getElementById("debug");
 
     function grantWinnerAccess() {
-        const token = crypto.randomUUID();
-        sessionStorage.setItem("WINNER_TOKEN", token);
+      const token = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2));
+      sessionStorage.setItem("WINNER_TOKEN", token);
     }
-
 
     function showStatus(msg) {
       statusEl.textContent = msg;
@@ -112,23 +115,18 @@
         ready = true;
         hideStatus();
       } catch (err) {
-        // IMPORTANT: do NOT redirect on load failure
         ready = false;
         console.error("Koordinatları yüklemede hata oluştu:", err);
-
-        showStatus(
-          "Bu tarayıcı desteklenmiyor." +
-          "Başka bir taracıyıda veya bilgisayarda deneyin" +
-          "-----"
-        );
+        showStatus("Koordinatlar yüklenemedi. Lütfen sayfayı bir web sunucusu üzerinden açın.");
       }
     }
 
-    function getOriginalImageClickPoint(evt) {
+    function getOriginalImagePointFromClientXY(clientX, clientY) {
+      // Translate client (viewport) coords to ORIGINAL image coords with object-fit: cover handling
       const rect = img.getBoundingClientRect();
 
-      const clickX = evt.clientX - rect.left;
-      const clickY = evt.clientY - rect.top;
+      const clickX = clientX - rect.left;
+      const clickY = clientY - rect.top;
 
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
@@ -157,18 +155,29 @@
       return targets.length === 2 && targets.every(t => t.found);
     }
 
-    function handleClick(evt) {
-      // If coordinates didn't load, ignore clicks (no redirect)
+    function updateDebugFromClientXY(clientX, clientY) {
+      if (!img.naturalWidth) return;
+      const p = getOriginalImagePointFromClientXY(clientX, clientY);
+      debugEl.textContent = `X: ${Math.round(p.x)}, Y: ${Math.round(p.y)}`;
+    }
+
+    // MOBILE + DESKTOP unified tap/click handler
+    function onPointerDown(evt) {
+      // Prevent mobile from also firing compatibility mouse/click events
+      evt.preventDefault();
+
       if (!ready) return;
 
-      const p = getOriginalImageClickPoint(evt);
+      const p = getOriginalImagePointFromClientXY(evt.clientX, evt.clientY);
+
+      // debug update on tap too
+      debugEl.textContent = `X: ${Math.round(p.x)}, Y: ${Math.round(p.y)}`;
 
       // match an unfound target within tolerance
       let matchedIndex = -1;
       for (let i = 0; i < targets.length; i++) {
         if (targets[i].found) continue;
         if (dist(p, targets[i]) <= HIT_RADIUS_PX) {
-
           matchedIndex = i;
           break;
         }
@@ -178,35 +187,32 @@
         targets[matchedIndex].found = true;
 
         if (allFound()) {
-            grantWinnerAccess();
-            window.location.href = WINNER_PAGE;
+          grantWinnerAccess();
+          sessionStorage.setItem("ALLOW_AUDIO", "1");
+          window.location.href = WINNER_PAGE;
         }
-
         return;
-        }
+      }
 
       sessionStorage.setItem("ALLOW_AUDIO", "1");
       window.location.href = BYE_PAGE;
     }
 
-    function updateDebug(evt) {
-        if (!img.naturalWidth) return;
-
-        const p = getOriginalImageClickPoint(evt);
-        document.getElementById("debug").textContent =
-            `X: ${Math.round(p.x)}, Y: ${Math.round(p.y)}`;
+    // Desktop-only mousemove debug; on mobile we’ll update on touch/pointer moves
+    function onPointerMove(evt) {
+      // Works for mouse + touch + pen
+      updateDebugFromClientXY(evt.clientX, evt.clientY);
     }
 
-
     img.addEventListener("load", loadTargets);
-
-    document.addEventListener("mousemove", updateDebug, { passive: true });
-
-
-    // in case image is cached
     if (img.complete && img.naturalWidth) loadTargets();
 
-    document.addEventListener("click", handleClick, { passive: true });
+    // Bind to the image only (so taps anywhere on image count)
+    img.addEventListener("pointerdown", onPointerDown, { passive: false });
+    img.addEventListener("pointermove", onPointerMove, { passive: true });
+
+    // If you still want desktop mousemove everywhere, you can keep this:
+    // document.addEventListener("mousemove", e => updateDebugFromClientXY(e.clientX, e.clientY), { passive: true });
   </script>
 </body>
 </html>

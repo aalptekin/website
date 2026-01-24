@@ -86,6 +86,7 @@
   </style>
 </head>
 <body>
+    <!-- Countdown -->
   <div id="countdown">60</div>
 
   <main class="card" id="content">
@@ -103,38 +104,64 @@
     <div class="datetime" id="datetime"></div>
   </main>
 
+  <!-- 🎵 Winner message audio -->
+  <audio id="messageAudio" src="message.mp3"></audio>
+
   <script>
     // --- ACCESS CONTROL ---
     const token = sessionStorage.getItem("WINNER_TOKEN");
 
     if (!token) {
-        document.body.innerHTML = "";
-        document.body.style.background = "#000";
-        throw new Error("Hack yapamazsınız");
+      document.body.innerHTML = "";
+      document.body.style.background = "#000";
+      throw new Error("Unauthorized access");
     }
 
-    // One-time use token
     sessionStorage.removeItem("WINNER_TOKEN");
 
-    // --- PAGE LOGIC ---
+    // --- DATE / TIME ---
     document.getElementById("datetime").textContent =
-        new Date().toLocaleString();
+      new Date().toLocaleString();
 
+    // --- AUTOPLAY AUDIO (gesture chained) ---
+    const audio = document.getElementById("messageAudio");
+    audio.volume = 1.0;
+
+    // Attach handlers IMMEDIATELY (before any interaction)
+    function unlockAudio() {
+    audio.play().catch(() => {});
+    document.removeEventListener("pointerdown", unlockAudio);
+    document.removeEventListener("click", unlockAudio);
+    document.removeEventListener("keydown", unlockAudio);
+    }
+
+    // Register early
+    document.addEventListener("pointerdown", unlockAudio);
+    document.addEventListener("click", unlockAudio);
+    document.addEventListener("keydown", unlockAudio);
+
+    // Optional: try once on load (will usually fail silently)
+    setTimeout(() => {
+    audio.play().catch(() => {});
+    }, 0);
+
+
+
+    // --- COUNTDOWN ---
     let remaining = 60;
     const cdEl = document.getElementById("countdown");
-
     cdEl.textContent = remaining;
 
     const timer = setInterval(() => {
-        remaining--;
-        cdEl.textContent = remaining;
+      remaining--;
+      cdEl.textContent = remaining;
 
-        if (remaining <= 0) {
+      if (remaining <= 0) {
         clearInterval(timer);
         document.body.innerHTML = "";
-        }
+      }
     }, 1000);
-    </script>
+  </script>
 
 </body>
 </html>
