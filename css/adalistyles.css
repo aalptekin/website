@@ -18,6 +18,7 @@ p {
   font-family: "Montserrat-Black";
   font-size: 3.5rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 .section-heading {
@@ -45,7 +46,7 @@ p {
 /* Navigation Bar */
 
 .navbar {
-  padding: 0 0 4.5rem;
+  padding: 0 0 1.5rem;
 }
 
 .navbar-brand {
@@ -88,11 +89,10 @@ p {
 /* Title Image */
 
 .title-image {
-  width: 150%;
-  /*transform: rotate(25deg); */
-  position: relative;
-  right: 15%;
-  top: -60px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%; /* Optional: set a width to see the effect */
 }
 
 .sa-image {
@@ -140,13 +140,13 @@ p {
 }
 
 .testimonial-image {
-  width: 10%;
+  width: 30%;
   border-radius: 100%;
-  margin: 20px;
+  margin: 10px;
 }
 
 .gallery-image {
-  width: 50%;
+  width: 70%;
   border-radius: 30%;
   margin: 10px;
 }
