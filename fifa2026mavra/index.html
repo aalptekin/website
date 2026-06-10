@@ -49,7 +49,7 @@
     <main class="group-main">
       <div class="group-card">
         <div class="group-title-row">
-          <h2 id="group-heading" class="group-heading">GRUP A</h2>
+          <h2 id="group-heading" class="group-heading"></h2>
           <p class="group-instruction">Sürükleyerek sıralayın · İlk 3 gruptan ilerler</p>
         </div>
         <div id="team-list" class="team-list"></div>
@@ -74,7 +74,7 @@
         <span class="header-logo">⚽</span>
         <span class="header-title">FIFA MAVRA 2026 – Grup Sıralama Özetiniz</span>
       </div>
-      <button id="submit-btn" class="btn-gold">
+      <button id="submit-btn" class="btn-primary">
         KAYDET
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
@@ -89,7 +89,7 @@
   <div id="reg-modal" class="modal-overlay hidden">
     <div class="modal-box">
       <div class="modal-header">
-        <h3>MAVRA'ya katılmak için 🎉</h3>
+        <h3>MAVRA'ya katılmak için</h3>
         <p>Bilgilerinizi girin, sıralama kaydedilsin.</p>
       </div>
       <div class="modal-body">
@@ -105,7 +105,7 @@
       </div>
       <div class="modal-footer">
         <button id="cancel-reg-btn" class="btn-ghost">İptal</button>
-        <button id="confirm-reg-btn" class="btn-gold">
+        <button id="confirm-reg-btn" class="btn-primary">
           <span id="confirm-label">Kaydet</span>
           <span id="confirm-spinner" class="spinner hidden"></span>
         </button>
@@ -130,7 +130,7 @@
   <div id="dashboard-view" class="hidden">
     <header class="app-header">
       <div class="header-left">
-        <span class="header-logo">🏆</span>
+        <img src="images/TAClogo.png" alt="TAC" class="header-logo-img" />
         <span class="header-title">MAVRA 2026 – Liderler</span>
       </div>
       <button id="dashboard-refresh-btn" class="btn-ghost" title="Yenile">
@@ -144,22 +144,18 @@
 
     <div id="dashboard-loading" class="dashboard-loading">
       <div class="dash-spinner"></div>
-      <p>Puanlar hesaplanıyor…</p>
+      <p>Mavra tablosu hazırlanıyor…</p>
     </div>
 
     <div id="dashboard-admin-missing" class="dashboard-notice hidden">
       <span>⚠️</span>
-      <p>Gerçek sıralama henüz girilmemiş (FIFA2026ADMIN kaydı bulunamadı). Puanlar mevcut değil.</p>
+      <p>Gerçek sıralama henüz girilmemiş. Puanlar mevcut değil.</p>
     </div>
 
     <div id="dashboard-content" class="hidden">
       <!-- Scoring legend -->
       <div class="scoring-legend">
-        <span class="legend-title">Puan tablosu:</span>
-        <span class="legend-item"><span class="legend-dot gold"></span>1. yer = 4 puan</span>
-        <span class="legend-item"><span class="legend-dot silver"></span>2. yer = 3 puan</span>
-        <span class="legend-item"><span class="legend-dot bronze"></span>3. yer = 2 puan</span>
-        <span class="legend-item"><span class="legend-dot grey"></span>4. yer = 1 puan</span>
+        <span class="legend-title">Maçlar tamamlandıkça puanlar ve sıralama değişecektir.</span>
       </div>
 
       <!-- Leaderboard -->

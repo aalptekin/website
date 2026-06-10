@@ -137,6 +137,22 @@ TEAMS_RAW.forEach(t => {
 });
 const GROUP_KEYS = Object.keys(GROUPS).sort(); // A..L
 
+// Nickname and avatar image for each group (A→L)
+const GROUP_NICKNAMES = {
+  A: 'ROBESON',
+  B: 'KARAN',
+  C: 'MORRIS',
+  D: 'NACAR',
+  E: 'WELLEN',
+  F: 'MELLING',
+  G: 'FEHIME',
+  H: 'ALLEN',
+  I: 'HALIL',
+  J: 'TISCHER',
+  K: 'BRUNO',
+  L: 'ERSOY',
+};
+
 // ── STATE ──────────────────────────────────────────────────────────
 let currentGroupIdx = 0;
 let editMode = false; // true when jumping to a group from the summary view
@@ -232,7 +248,14 @@ function renderGroup(idx) {
     groupPool[key] = [...GROUPS[key]];
   }
 
-  groupHeading.textContent = `GRUP ${key}`;
+  const nick = GROUP_NICKNAMES[key] || '';
+  groupHeading.innerHTML = `
+    <span class="group-heading-left">GRUP ${key}</span>
+    <span class="group-heading-right">
+      <img src="images/${nick}.png" alt="${nick}" class="group-nick-img"
+           onerror="this.style.display='none'">
+      <span class="group-nick-name">${nick}</span>
+    </span>`;
   renderGroupUI(key);
 
   updateProgress();
@@ -391,12 +414,17 @@ function renderSummary() {
   summaryGrid.innerHTML = "";
   GROUP_KEYS.forEach(key => {
     const teams = rankings[key];
+    const nick  = GROUP_NICKNAMES[key] || '';
     const card  = document.createElement("div");
     card.className = "summary-group-card";
     card.innerHTML = `
       <div class="summary-group-header">
         <span class="summary-group-label">GRUP ${key}</span>
-        <span class="edit-hint">✏ Edit</span>
+        <span class="summary-nick-block">
+          <img src="images/${nick}.png" alt="${nick}" class="summary-nick-img"
+               onerror="this.style.display='none'">
+          <span class="summary-nick-name">${nick}</span>
+        </span>
       </div>`;
 
     teams.forEach((team, i) => {
