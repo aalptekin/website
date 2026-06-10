@@ -591,7 +591,7 @@ confirmBtn.addEventListener("click", async () => {
     successModal.classList.remove("hidden");
   } catch (err) {
     console.error("Parse error:", err);
-    showRegError("Kayıt hatası: " + (err.message || "Hata. Tekrar deneyin"));
+    showRegError("Tekrar deneyin. " + (err.message || "Hata. Tekrar deneyin"));
   } finally {
     setConfirmLoading(false);
   }
