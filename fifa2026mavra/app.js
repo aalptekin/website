@@ -587,7 +587,7 @@ confirmBtn.addEventListener("click", async () => {
     await obj.save();
     regModal.classList.add("hidden");
     document.getElementById("success-message").textContent =
-      `Bravo ${name}! Tahminleriniz kaydedildi. 🎉`;
+      `Bravo ${name}! Tahminleriniz kaydedildi.`;
     successModal.classList.remove("hidden");
   } catch (err) {
     console.error("Parse error:", err);
