@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFA 2026 MAVRASI</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+</head>
+<body>
+
+  <!-- SPLASH / INTRO -->
+  <div id="splash-screen">
+    <div class="splash-bg"></div>
+    <div class="splash-content">
+      <div class="trophy-icon">
+        <img src="images/TAClogo.png" alt="TAC" />
+      </div>
+      <h1 class="splash-title">FIFA 2026 Dünya Kupası</h1>
+      <h2 class="splash-year">TAC 89</h2>
+      <p class="splash-sub">FIFA 2026 Mavrası</p>
+      <div class="splash-btn-group">
+        <button id="start-btn" class="btn-primary">
+          <span>Grup tahminlerinizi yapın...</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button id="goto-dashboard-btn" class="btn-ghost splash-dashboard-btn">
+          Tahmin yapmıştım. Mavraya gidelim...
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP PREDICTION VIEW -->
+  <div id="group-view" class="hidden">
+    <header class="app-header">
+      <div class="header-left">
+        <span class="header-logo">⚽</span>
+        <span class="header-title">MAVRA 2026</span>
+      </div>
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar-track">
+          <div id="progress-fill" class="progress-bar-fill"></div>
+        </div>
+        <span id="progress-label" class="progress-label">Grup 1 / 12</span>
+      </div>
+    </header>
+
+    <main class="group-main">
+      <div class="group-card">
+        <div class="group-title-row">
+          <h2 id="group-heading" class="group-heading">GRUP A</h2>
+          <p class="group-instruction">Sürükleyerek sıralayın · İlk 3 gruptan ilerler</p>
+        </div>
+        <div id="team-list" class="team-list"></div>
+        <div class="card-footer">
+          <button id="prev-btn" class="btn-ghost" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back
+          </button>
+          <button id="next-btn" class="btn-primary">
+            Next Group
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- SUMMARY VIEW -->
+  <div id="summary-view" class="hidden">
+    <header class="app-header">
+      <div class="header-left">
+        <span class="header-logo">⚽</span>
+        <span class="header-title">FIFA MAVRA 2026 – Grup Sıralama Özetiniz</span>
+      </div>
+      <button id="submit-btn" class="btn-gold">
+        KAYDET
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </header>
+    <div class="summary-intro">
+      <p>Sıralamayı değiştirmek isterseniz, kutuyu seçin, tekrar sıralama yapın.</p>
+    </div>
+    <div id="summary-grid" class="summary-grid"></div>
+  </div>
+
+  <!-- REGISTRATION MODAL -->
+  <div id="reg-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>MAVRA'ya katılmak için 🎉</h3>
+        <p>Bilgilerinizi girin, sıralama kaydedilsin.</p>
+      </div>
+      <div class="modal-body">
+        <div class="form-field">
+          <label for="user-name">İsim</label>
+          <input type="text" id="user-name" placeholder="Your name" autocomplete="name" />
+        </div>
+        <div class="form-field">
+          <label for="user-email">ePosta</label>
+          <input type="email" id="user-email" placeholder="your@email.com" autocomplete="email" />
+        </div>
+        <div id="reg-error" class="reg-error hidden"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="cancel-reg-btn" class="btn-ghost">İptal</button>
+        <button id="confirm-reg-btn" class="btn-gold">
+          <span id="confirm-label">Kaydet</span>
+          <span id="confirm-spinner" class="spinner hidden"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div id="success-modal" class="modal-overlay hidden">
+    <div class="modal-box success-box">
+      <div class="success-icon">✅</div>
+      <h3>Kaydedildi</h3>
+      <p id="success-message"></p>
+      <button id="done-btn" class="btn-gold" style="margin-top:1.5rem">
+        🏆 Sıralamayı Gör
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+  <div id="dashboard-view" class="hidden">
+    <header class="app-header">
+      <div class="header-left">
+        <span class="header-logo">🏆</span>
+        <span class="header-title">MAVRA 2026 – Liderler</span>
+      </div>
+      <button id="dashboard-refresh-btn" class="btn-ghost" title="Yenile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+          <path d="M23 4v6h-6M1 20v-6h6"/>
+          <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+        </svg>
+        Yenile
+      </button>
+    </header>
+
+    <div id="dashboard-loading" class="dashboard-loading">
+      <div class="dash-spinner"></div>
+      <p>Puanlar hesaplanıyor…</p>
+    </div>
+
+    <div id="dashboard-admin-missing" class="dashboard-notice hidden">
+      <span>⚠️</span>
+      <p>Gerçek sıralama henüz girilmemiş (FIFA2026ADMIN kaydı bulunamadı). Puanlar mevcut değil.</p>
+    </div>
+
+    <div id="dashboard-content" class="hidden">
+      <!-- Scoring legend -->
+      <div class="scoring-legend">
+        <span class="legend-title">Puan tablosu:</span>
+        <span class="legend-item"><span class="legend-dot gold"></span>1. yer = 4 puan</span>
+        <span class="legend-item"><span class="legend-dot silver"></span>2. yer = 3 puan</span>
+        <span class="legend-item"><span class="legend-dot bronze"></span>3. yer = 2 puan</span>
+        <span class="legend-item"><span class="legend-dot grey"></span>4. yer = 1 puan</span>
+      </div>
+
+      <!-- Leaderboard -->
+      <div id="leaderboard-list" class="leaderboard-list"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
