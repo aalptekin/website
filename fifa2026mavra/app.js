@@ -1188,6 +1188,13 @@ function koTeamName(slot) {
   const t = KO_TEAMS[slot];
   return t ? (isTurkish ? t.tr : t.en) : slot;
 }
+// Always returns English name — used when saving to Parse so scores
+// can be compared correctly regardless of user locale.
+function koTeamEn(slot) {
+  if (!slot) return '';
+  const t = KO_TEAMS[slot];
+  return t ? t.en : slot;
+}
 function koTeamFlag(slot) {
   if (!slot) return null;
   const t = KO_TEAMS[slot];
@@ -1426,18 +1433,18 @@ function buildKoSaveData() {
   koRounds.forEach((round, ri) => {
     round.forEach((match, mi) => {
       const key = `${roundNames[ri]}_M${mi + 1}`;
-      data[`${key}_A`]      = koTeamName(match.teamA);
-      data[`${key}_B`]      = koTeamName(match.teamB);
-      data[`${key}_Winner`] = koTeamName(match.winner);
+      data[`${key}_A`]      = koTeamEn(match.teamA);   // always English
+      data[`${key}_B`]      = koTeamEn(match.teamB);
+      data[`${key}_Winner`] = koTeamEn(match.winner);
     });
   });
   // 3rd place
-  data['ThirdPlace_A']      = koTeamName(ko3rdMatch.teamA);
-  data['ThirdPlace_B']      = koTeamName(ko3rdMatch.teamB);
-  data['ThirdPlace_Winner'] = koTeamName(ko3rdMatch.winner);
+  data['ThirdPlace_A']      = koTeamEn(ko3rdMatch.teamA);
+  data['ThirdPlace_B']      = koTeamEn(ko3rdMatch.teamB);
+  data['ThirdPlace_Winner'] = koTeamEn(ko3rdMatch.winner);
   // Champion
   const finalMatch = koRounds[koRounds.length - 1][0];
-  data['Champion'] = koTeamName(finalMatch.winner);
+  data['Champion'] = koTeamEn(finalMatch.winner);
   return data;
 }
 
