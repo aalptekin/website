@@ -82,11 +82,17 @@ body {
   filter: drop-shadow(0 0 30px #f5c51880);
   animation: float 3s ease-in-out infinite;
   line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .trophy-icon img {
   width: clamp(80px, 25vw, 140px);
   height: auto;
+  max-width: 100%;
+  display: block;
   filter: drop-shadow(0 0 20px rgba(245,197,24,0.4));
 }
 
@@ -1386,32 +1392,31 @@ body {
 
 /* ── Splash logo row: tribute left, TAC logo right ── */
 .splash-logo-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
   max-width: 420px;
   margin: 0 auto;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-/* Tribute image — stays put, no animation */
+/* Tribute image — fixed size, no animation */
 .splash-tribute-img {
+  width: clamp(80px, 22vw, 130px);
   height: clamp(80px, 22vw, 130px);
-  width: auto;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   border-radius: 8px;
-  flex-shrink: 0;
-  /* No animation — stays still */
-}
-
-/* TAC logo — keeps the existing float animation */
-.trophy-icon {
-  flex-shrink: 0;
-  /* animation inherited from existing .trophy-icon rules */
-}
-.trophy-icon img {
-  height: clamp(80px, 22vw, 130px);
-  width: auto;
-  object-fit: contain;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: block;
+  -webkit-animation: none;
+          animation: none;
 }
