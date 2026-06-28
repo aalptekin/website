@@ -163,8 +163,6 @@ GROUP_KEYS.forEach(g => { rankings[g] = []; });
 // Track which groups the user has already completed at least once
 const completedGroups = new Set();
 
-document.addEventListener('DOMContentLoaded', function() {
-
 // ── DOM REFS ───────────────────────────────────────────────────────
 const splash      = document.getElementById("splash-screen");
 const groupView   = document.getElementById("group-view");
@@ -1514,5 +1512,3 @@ document.getElementById('ko-done-btn').addEventListener('click', () => {
   document.getElementById('ko-success-modal').classList.add('hidden');
   showDashboard();
 });
-
-}); // end DOMContentLoaded
