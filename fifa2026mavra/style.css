@@ -1052,3 +1052,366 @@ body {
   .lb-detail-grid { grid-template-columns: repeat(4, 1fr); }
   .scoring-legend { padding: 0.65rem 1rem; font-size: 0.72rem; }
 }
+
+/* ============================================
+   KNOCKOUT BRACKET
+   ============================================ */
+#knockout-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--clr-bg);
+}
+
+.ko-instruction {
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-condensed);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+/* ── Bracket horizontal scroll container ── */
+.ko-bracket {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 1rem 1rem 2.5rem;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Round column ── */
+.ko-round-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 155px;
+  max-width: 180px;
+  flex: 1;
+  flex-shrink: 0;
+  border-right: 2px dashed var(--clr-border);
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+}
+.ko-round-col:last-child {
+  border-right: none;
+  margin-right: 0;
+}
+
+.ko-round-label {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: #800000;
+  text-align: center;
+  padding-bottom: 0.6rem;
+  white-space: nowrap;
+  border-bottom: 2px solid #800000;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Matches wrapper — space matches evenly in column height ── */
+.ko-matches-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1;
+  gap: 0.4rem;
+}
+
+/* ── Single match card ── */
+.ko-match {
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--clr-card);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* ── Team row ── */
+.ko-team {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.42rem 0.6rem;
+  cursor: pointer;
+  transition: background var(--transition);
+  border-bottom: 1px solid var(--clr-border);
+  min-height: 36px;
+  user-select: none;
+  position: relative;
+}
+.ko-match .ko-team:last-child { border-bottom: none; }
+
+/* Hover — only on clickable, non-loser teams */
+.ko-team:not(.ko-team-empty):not(.ko-team-loser):hover {
+  background: #f29191;
+  cursor: pointer;
+}
+
+.ko-team-empty   { cursor: default; opacity: 0.45; }
+
+.ko-team-winner  {
+  background: rgba(0,150,63,0.1);
+  border-left: 3px solid var(--clr-green);
+}
+.ko-team-winner:hover { background: rgba(0,150,63,0.18) !important; }
+
+.ko-team-loser   { opacity: 0.35; cursor: pointer; }
+.ko-team-loser:hover { background: #f29191 !important; opacity: 1; }
+
+/* ── Flag ── */
+.ko-flag {
+  width: 26px; height: 17px;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid rgba(0,0,0,0.08);
+  flex-shrink: 0;
+}
+.ko-flag-placeholder {
+  width: 26px; height: 17px;
+  background: var(--clr-border);
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* ── Team name ── */
+.ko-team-name {
+  font-family: var(--font-condensed);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--clr-text);
+}
+.ko-tbd {
+  color: var(--clr-muted);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ── Winner tick ── */
+.ko-tick {
+  color: var(--clr-green);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* ── Header right for save button ── */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 540px) {
+  .ko-round-col  { min-width: 120px; }
+  .ko-team       { padding: 0.32rem 0.45rem; min-height: 32px; }
+  .ko-team-name  { font-size: 0.7rem; }
+  .ko-flag, .ko-flag-placeholder { width: 20px; height: 14px; }
+  .ko-round-label { font-size: 0.82rem; }
+}
+
+/* ============================================
+   COMBINED LEADERBOARD MODAL
+   ============================================ */
+.combined-modal-box {
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.combined-modal-header {
+  padding: 1.1rem 1.5rem 0;
+  border-bottom: 1px solid var(--clr-border);
+  background: linear-gradient(135deg, var(--clr-surface), var(--clr-card));
+  flex-shrink: 0;
+}
+
+.combined-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.combined-header-top h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: #800000;
+}
+
+.combined-close {
+  padding: 0.3rem 0.6rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ── Tabs ── */
+.combined-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: none;
+}
+
+.combined-tab {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: var(--font-condensed);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.combined-tab:hover { color: var(--clr-text); }
+.combined-tab.active {
+  color: #800000;
+  border-bottom-color: #800000;
+}
+
+/* ── Scrollable content ── */
+.combined-content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.combined-leaderboard-list {
+  padding: 0.75rem 1rem 1.5rem;
+}
+
+/* ── Sub-score line under name ── */
+.lb-score-sub {
+  font-family: var(--font-condensed);
+  font-size: 0.72rem;
+  color: var(--clr-muted);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-top: 1px;
+}
+
+/* ── Detail section label ── */
+.detail-section-label {
+  font-family: var(--font-condensed);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #800000;
+  margin-bottom: 0.3rem;
+  padding: 0 0.1rem;
+}
+
+@media (max-width: 540px) {
+  .combined-modal-box { max-height: 95vh; }
+  .combined-tab { font-size: 0.75rem; padding: 0.5rem 0.3rem; }
+  .combined-header-top h3 { font-size: 1.2rem; }
+}
+
+/* ── Tribute image panel in dashboard ── */
+.dashboard-body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.tribute-panel {
+  flex-shrink: 0;
+  width: 200px;
+  padding-top: 1rem;
+}
+
+.tribute-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  display: block;
+}
+
+#leaderboard-list {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .dashboard-body {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0.75rem;
+  }
+  .tribute-panel {
+    width: 160px;
+    padding-top: 0.75rem;
+  }
+}
+
+/* ── Knockout button — taller, purple ── */
+.btn-knockout {
+  background: #6a0dad;
+  box-shadow: 0 4px 20px rgba(106,13,173,0.35);
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+  min-height: 60px;
+}
+.btn-knockout:hover {
+  background: #7b1fc4;
+  box-shadow: 0 8px 28px rgba(106,13,173,0.5);
+}
+
+/* ── Splash logo row: tribute left, TAC logo right ── */
+.splash-logo-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+/* Tribute image — stays put, no animation */
+.splash-tribute-img {
+  height: clamp(80px, 22vw, 130px);
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+  /* No animation — stays still */
+}
+
+/* TAC logo — keeps the existing float animation */
+.trophy-icon {
+  flex-shrink: 0;
+  /* animation inherited from existing .trophy-icon rules */
+}
+.trophy-icon img {
+  height: clamp(80px, 22vw, 130px);
+  width: auto;
+  object-fit: contain;
+}

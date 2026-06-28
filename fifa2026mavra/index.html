@@ -13,15 +13,18 @@
   <div id="splash-screen">
     <div class="splash-bg"></div>
     <div class="splash-content">
-      <div class="trophy-icon">
-        <img src="images/TAClogo.png" alt="TAC" />
+      <div class="splash-logo-row">
+        <img src="images/fifamavra2026_ko_tribute.png" alt="In Memoriam" class="splash-tribute-img" />
+        <div class="trophy-icon">
+          <img src="images/TAClogo.png" alt="TAC" />
+        </div>
       </div>
       <h1 class="splash-title">FIFA 2026 Dünya Kupası</h1>
       <h2 class="splash-year">TAC 89</h2>
       <p class="splash-sub">FIFA 2026 Mavrası</p>
       <div class="splash-btn-group">
-        <button id="start-btn" class="btn-primary">
-          <span>Grup tahminlerinizi yapın...</span>
+        <button id="goto-knockout-btn" class="btn-primary btn-knockout">
+          <span>Eleme turu tahminleri...</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
         <button id="goto-dashboard-btn" class="btn-ghost splash-dashboard-btn">
@@ -126,6 +129,67 @@
     </div>
   </div>
 
+  <!-- KNOCKOUT VIEW -->
+  <div id="knockout-view" class="hidden">
+    <header class="app-header">
+      <div class="header-left">
+        <span class="header-logo">⚽</span>
+        <span class="header-title">MAVRA 2026 – Eleme Turu</span>
+      </div>
+      <div class="header-right">
+        <button id="ko-save-btn" class="btn-gold hidden">
+          Tahminleri Kaydet
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </header>
+    <div class="ko-instruction">
+      <p>Kazananı seçmek için takımın üzerine tıklayın</p>
+    </div>
+    <div id="ko-bracket" class="ko-bracket"></div>
+  </div>
+
+  <!-- KNOCKOUT REGISTRATION MODAL -->
+  <div id="ko-reg-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Eleme Turu Tahmini</h3>
+        <p>Bilgilerinizi girin, tahminler kaydedilsin.</p>
+      </div>
+      <div class="modal-body">
+        <div class="form-field">
+          <label for="ko-user-name">İsim</label>
+          <input type="text" id="ko-user-name" placeholder="İsminiz" autocomplete="name" />
+        </div>
+        <div class="form-field">
+          <label for="ko-user-email">ePosta</label>
+          <input type="email" id="ko-user-email" placeholder="eposta@adresiniz.com" autocomplete="email" />
+        </div>
+        <div id="ko-reg-error" class="reg-error hidden"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="ko-cancel-btn" class="btn-ghost">İptal</button>
+        <button id="ko-confirm-btn" class="btn-gold">
+          <span id="ko-confirm-label">Kaydet</span>
+          <span id="ko-confirm-spinner" class="spinner hidden"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOCKOUT SUCCESS MODAL -->
+  <div id="ko-success-modal" class="modal-overlay hidden">
+    <div class="modal-box success-box">
+      <div class="success-icon">✅</div>
+      <h3>Kaydedildi!</h3>
+      <p id="ko-success-message"></p>
+      <button id="ko-done-btn" class="btn-gold" style="margin-top:1.5rem">
+        🏆 Sıralamayı Gör
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
   <!-- DASHBOARD VIEW -->
   <div id="dashboard-view" class="hidden">
     <header class="app-header">
@@ -133,13 +197,18 @@
         <img src="images/TAClogo.png" alt="TAC" class="header-logo-img" />
         <span class="header-title">MAVRA 2026 – Liderler</span>
       </div>
-      <button id="dashboard-refresh-btn" class="btn-ghost" title="Yenile">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
-          <path d="M23 4v6h-6M1 20v-6h6"/>
-          <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
-        </svg>
-        Yenile
-      </button>
+      <div style="display:flex;gap:0.5rem;align-items:center;">
+        <button id="combined-lb-btn" class="btn-gold" style="font-size:0.82rem;padding:0.5rem 0.9rem;">
+          🏆 Genel Sıralama
+        </button>
+        <button id="dashboard-refresh-btn" class="btn-ghost" title="Yenile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <path d="M23 4v6h-6M1 20v-6h6"/>
+            <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+          </svg>
+          Yenile
+        </button>
+      </div>
     </header>
 
     <div id="dashboard-loading" class="dashboard-loading">
@@ -158,8 +227,37 @@
         <span class="legend-title">Maçlar tamamlandıkça puanlar ve sıralama değişecektir.</span>
       </div>
 
-      <!-- Leaderboard -->
-      <div id="leaderboard-list" class="leaderboard-list"></div>
+      <!-- Leaderboard with tribute image -->
+      <div class="dashboard-body">
+        <div class="tribute-panel">
+          <img src="images/fifamavra2026_ko_tribute.png" alt="In Memoriam" class="tribute-img" />
+        </div>
+        <div id="leaderboard-list" class="leaderboard-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMBINED LEADERBOARD MODAL -->
+  <div id="combined-modal" class="modal-overlay hidden">
+    <div class="modal-box combined-modal-box">
+      <div class="modal-header combined-modal-header">
+        <div class="combined-header-top">
+          <h3>🏆 MAVRA 2026 – Genel Sıralama</h3>
+          <button id="combined-close-btn" class="btn-ghost combined-close">✕</button>
+        </div>
+        <div class="combined-tabs">
+          <button class="combined-tab active" data-tab="combined">Genel</button>
+          <button class="combined-tab" data-tab="group">Grup Aşaması</button>
+          <button class="combined-tab" data-tab="ko">Eleme Turu</button>
+        </div>
+      </div>
+      <div id="combined-loading" class="dashboard-loading">
+        <div class="dash-spinner"></div>
+        <p>Puanlar hesaplanıyor…</p>
+      </div>
+      <div id="combined-content" class="combined-content hidden">
+        <div id="combined-list" class="leaderboard-list combined-leaderboard-list"></div>
+      </div>
     </div>
   </div>
 
