@@ -1420,3 +1420,29 @@ body {
   -webkit-animation: none;
           animation: none;
 }
+
+/* ── Predictions button on splash ── */
+.splash-predictions-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  padding: 0.9rem 1.75rem;
+  font-family: var(--font-condensed);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #555;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius);
+  background: transparent;
+  transition: all var(--transition);
+}
+.splash-predictions-btn:hover {
+  border-color: #800000;
+  color: #800000;
+  background: rgba(128,0,0,0.05);
+}
